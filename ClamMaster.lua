@@ -9,17 +9,30 @@ local CSBlackPearlCounter = 0
 local CSIridescentPearlCounter = 0
 local CSSmallLustrousPearlCounter = 0
 local CSLuckIdentifier = "???"
+local LuckIdentifier = "???"
+local SettingsLoaded = false
 
--- Get the lifetime counts.
-if not BigMouthClamCounter then BigMouthClamCounter = 0 end
-if not GoldenPearlCounter then GoldenPearlCounter = 0 end
-if not BlackPearlCounter then BlackPearlCounter = 0 end
-if not IridescentPearlCounter then IridescentPearlCounter = 0 end
-if not SmallLustrousPearlCounter then SmallLustrousPearlCounter = 0 end
-if not LuckIdentifier then LuckIdentifier = "???" end
+-- 
+if (not BigMouthClamCounter) then BigMouthClamCounter = 0 end
+if (not GoldenPearlCounter) then GoldenPearlCounter = 0 end
+if (not BlackPearlCounter) then BlackPearlCounter = 0 end
+if (not IridescentPearlCounter) then IridescentPearlCounter = 0 end
+if (not SmallLustrousPearlCounter) then SmallLustrousPearlCounter = 0 end
+if (not CMAutoDelete) then CMAutoDelete = false end
+
+-- We run this just to be 100% sure that we have it.
+function LoadSettings()
+    if (not BigMouthClamCounter) then BigMouthClamCounter = 0 end
+    if (not GoldenPearlCounter) then GoldenPearlCounter = 0 end
+    if (not BlackPearlCounter) then BlackPearlCounter = 0 end
+    if (not IridescentPearlCounter) then IridescentPearlCounter = 0 end
+    if (not SmallLustrousPearlCounter) then SmallLustrousPearlCounter = 0 end
+    if (not CMAutoDelete) then CMAutoDelete = false end
+    SettingsLoaded = true
+    Lucky()
+end
 
 -- Other
-if not CMAutoDelete then CMAutoDelete = false end
 local GoldenPearlDropChance = 0.017 -- Adjusted to Turtle WoW, in Classic it's 0.005
 local LootDelayTime = GetTime()
 local LootDelay = 1
@@ -39,8 +52,8 @@ local f = CreateFrame("Frame");
 
 f:SetScript("OnEvent", function()
     if (event == "ADDON_LOADED") and (arg1 == "ClamMaster") then
+        LoadSettings()
         DEFAULT_CHAT_FRAME:AddMessage("|cffFF0000[Clam Master]|r Loaded. (/cm for more info)");
-        Lucky()
         f:UnregisterEvent("ADDON_LOADED")
 -- ====================================================================================================
     elseif (event == "CHAT_MSG_LOOT") and (string.find(arg1, "You receive loot:")) then
@@ -63,7 +76,9 @@ f:SetScript("OnEvent", function()
             CSSmallLustrousPearlCounter = CSSmallLustrousPearlCounter + 1;
         end
         -- Update the text if it need.
-        Lucky()
+        if (SettingsLoaded) then
+            Lucky()
+        end
     end
 
 end)
@@ -103,7 +118,7 @@ function SearchClams()
     for bag = 0, 4 do
         for slot = 1, GetContainerNumSlots(bag) do
             local BagItem = GetContainerItemLink(bag, slot)
-            if (BagItem) and (string.find(BagItem, "Big%-mouth Clam")) or (string.find(BagItem, "Thick%-shelled Clam") or (string.find(BagItem, "Small Barnacled Clam") then
+            if (BagItem) and ((string.find(BagItem, "Big%-mouth Clam")) or (string.find(BagItem, "Thick%-shelled Clam")) or (string.find(BagItem, "Small Barnacled Clam"))) then
                 return bag, slot
             end
         end
@@ -122,7 +137,7 @@ function ClamMeatDelete()
         for bag = 0, 4 do
             for slot = 1, GetContainerNumSlots(bag) do
                 local BagItem = GetContainerItemLink(bag, slot)
-                if (BagItem) and (string.find(BagItem, "Zesty Clam Meat")) or (string.find(BagItem, "Tangy Clam Meat") or (string.find(BagItem, "Clam Meat") then
+                if (BagItem) and (string.find(BagItem, "Zesty Clam Meat")) or (string.find(BagItem, "Tangy Clam Meat")) or (string.find(BagItem, "Clam Meat")) then
                     PickupContainerItem(bag, slot)
                     DeleteCursorItem()   
                 end
@@ -269,6 +284,11 @@ local cssmallLustrousPearlsCount = WidgetFrame:CreateFontString(WidgetFrame, "OV
 -- ====================================================================================================
 
 function Lucky()
+
+    -- 
+    if (not SettingsLoaded) then
+        return
+    end
 
     -- Lucky or Unlucky Lifetime Session ---
     local expectedGoldenPearlCount = (BigMouthClamCounter * GoldenPearlDropChance)
