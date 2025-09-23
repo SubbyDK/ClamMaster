@@ -75,6 +75,7 @@ end)
 f:SetScript("OnUpdate", function()
 
     -- Delay timer
+    -- The reason we delay is that if we loot to fast, then it will bug out and try to loot until we log out.
     if (GetNumRaidMembers() == 0) and ((GetTime() - LootDelayTime) > LootDelay) then
         OpenAllClams()
     end

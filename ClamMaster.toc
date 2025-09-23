@@ -1,6 +1,6 @@
 ## Interface: 11200
-## Title: Clam Master |cff7fff7f TurtleWOW|r
-## Original Author: UbzTV
+## Title: Clam Master |cff7fff7f for TurtleWOW|r
+## Original Author: UbzTV - https://www.curseforge.com/wow/addons/clammaster
 ## Author: Subby
 ## Version: 2.5.1
 ## Notes: Open all clams and track Golden Pearl.
