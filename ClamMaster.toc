@@ -1,6 +1,7 @@
 ## Interface: 11200
 ## Title: Clam Master |cff7fff7f TurtleWOW|r
-## Author: UbzTV
+## Original Author: UbzTV
+## Author: Subby
 ## Version: 2.5.1
 ## Notes: Open all clams and track Golden Pearl.
 ## SavedVariables: BigMouthClamCounter, GoldenPearlCounter, BlackPearlCounter, IridescentPearlCounter, SmallLustrousPearlCounter, CMAutoDelete
