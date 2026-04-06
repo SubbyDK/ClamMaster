@@ -33,7 +33,11 @@ function LoadSettings()
 end
 
 -- Other
-local GoldenPearlDropChance = 0.017 -- Adjusted to Turtle WoW, in Classic it's 0.005
+if (TURTLE_WOW_VERSION) then -- Adjusted to Turtle WoW, in Classic it's 0.005
+    local GoldenPearlDropChance = 0.017
+else
+    local GoldenPearlDropChance = 0.005
+end
 local LootDelayTime = GetTime()
 local LootDelay = 1
 
