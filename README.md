@@ -5,7 +5,7 @@ Loot the clams and they will be auto opened.</br>
 Use /cm for more info.
 
 ### Interface
-<img src="https://i.imgur.com/t1E3cxk.png" width="300" height="160" />
+<img src="https://raw.githubusercontent.com/SubbyDK/ClamMaster/refs/heads/main/Pic/ScreenShoot.jpg" width="300" height="160" />
 Use /cmshow to get the interface up.
 
 ### Planned Features
