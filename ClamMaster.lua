@@ -69,6 +69,7 @@ f:SetScript("OnEvent", function()
             CSGoldenPearlCounter = CSGoldenPearlCounter + 1;
             PlaySoundFile("Interface\\AddOns\\ClamMaster\\Sounds\\GoldenPearl.ogg");
             DEFAULT_CHAT_FRAME:AddMessage("|cffFF0000[ClamMaster]|r - Congratulations, you've looted a Golden Pearl!");
+            WidgetFrame:Show();
         elseif (string.find(arg1, "Black Pearl")) then
             BlackPearlCounter = BlackPearlCounter + 1;
             CSBlackPearlCounter = CSBlackPearlCounter + 1;
