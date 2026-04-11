@@ -33,10 +33,11 @@ function LoadSettings()
 end
 
 -- Other
+local GoldenPearlDropChance
 if (TURTLE_WOW_VERSION) then -- Adjusted to Turtle WoW, in Classic it's 0.005
-    local GoldenPearlDropChance = 0.017
+    GoldenPearlDropChance = 0.017
 else
-    local GoldenPearlDropChance = 0.005
+    GoldenPearlDropChance = 0.005
 end
 local LootDelayTime = GetTime()
 local LootDelay = 1
@@ -69,7 +70,6 @@ f:SetScript("OnEvent", function()
             CSGoldenPearlCounter = CSGoldenPearlCounter + 1;
             PlaySoundFile("Interface\\AddOns\\ClamMaster\\Sounds\\GoldenPearl.ogg");
             DEFAULT_CHAT_FRAME:AddMessage("|cffFF0000[ClamMaster]|r - Congratulations, you've looted a Golden Pearl!");
-            WidgetFrame:Show();
         elseif (string.find(arg1, "Black Pearl")) then
             BlackPearlCounter = BlackPearlCounter + 1;
             CSBlackPearlCounter = CSBlackPearlCounter + 1;
