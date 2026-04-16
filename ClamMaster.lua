@@ -142,6 +142,7 @@ function ClamMeatDelete()
         for bag = 0, 4 do
             for slot = 1, GetContainerNumSlots(bag) do
                 local BagItem = GetContainerItemLink(bag, slot)
+                BagItem = tostring(BagItem)
                 if (BagItem) and (string.find(BagItem, "Zesty Clam Meat")) or (string.find(BagItem, "Tangy Clam Meat")) or (string.find(BagItem, "Clam Meat")) then
                     PickupContainerItem(bag, slot)
                     DeleteCursorItem()   
